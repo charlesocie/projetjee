@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:core="http://java.sun.com/jsf/core"
+      xmlns:html="http://java.sun.com/jsf/html"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/jsf/core
+http://java.sun.com/jsf/core
+http://java.sun.com/jsf/html ">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <title>Login</title>
+</head>
+<body>
+<core:view>
+    <html:form>
+        <p style="color: indigo">Erreur de Login ou Mot de passe</p>
+        <br/>
+        login :
+        <html:inputText id="login" value="#{user.mail}" required="true" requiredMessage="Login obligatoire"/>
+        <br/>
+        <html:message style="color:red;" for="login"/>
+        <br/>
+        password :
+        <html:inputSecret id="password" value="#{user.password}" required="true"
+                          requiredMessage="Password obligatoire"/>
+        <br/>
+        <html:commandButton value="Connection" action="#{userService.findPassword(user.mail, user.password)}"/>
+        <hr/>
+        <html:message style="color:red;" for="password"/>
+        <br/>
+    </html:form>
+</core:view>
+</body>
+</html>
