@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <title>Ajouter un Utilisateur</title>
+    <style type="text/css">
+        .tg {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border-color: #ccc;
+        }
+
+        .tg td {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: #ccc;
+            color: #333;
+            background-color: #fff;
+        }
+
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: #ccc;
+            color: #333;
+            background-color: #f0f0f0;
+        }
+
+        .tg .tg-4eph {
+            background-color: #f9f9f9
+        }
+    </style>
+</h:head>
+<h:body>
+    <h1>Nouvelle Utilisateur</h1>
+    <h:form>
+        <table>
+            <tr>
+                <td><label>Nom</label></td>
+                <td><h:inputText id="lastname" value="#{user.lastname}"></h:inputText>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Prenom</label></td>
+                <td><h:inputText id="firstname" value="#{user.firstname}"></h:inputText>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Mail</label></td>
+                <td><h:inputText id="mail" value="#{user.mail}"></h:inputText>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Mot de passe</label></td>
+                <td><h:inputText id="password" value="#{user.password}"></h:inputText>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><h:commandButton
+                        action="#{userService.addUser(user)}" value="Add User"></h:commandButton>
+                </td>
+            </tr>
+
+        </table>
+
+    </h:form>
+
+    <br/>
+    <h3>Liste Utilisateurs</h3>
+
+
+    <c:if test="${!empty userService.listUsers()}">
+        <table class="tg">
+            <tr>
+                <th width="80">ID Utilisateur</th>
+                <th width="120">Nom Utilisateur</th>
+                <th width="120">Prenom Utilisateur</th>
+                <th width="120">Mail Utilisateur</th>
+            </tr>
+            <ui:repeat value="${userService.listUsers()}" var="user">
+                <tr>
+                    <td>${user.id}</td>
+                    <td>${user.lastname}</td>
+                    <td>${user.firstname}</td>
+                    <td>${user.mail}</td>
+                    <h:form>
+                        <td colspan="2"><h:commandButton
+                                action="#{userService.deleteUser(user)}" value="modifier/supprimer"></h:commandButton>
+                        </td>
+                    </h:form>
+                </tr>
+            </ui:repeat>
+        </table>
+    </c:if>
+    <br></br>
+    <h:form>
+    <tr>
+        <td colspan="2"><h:commandButton
+                action="#{userService.gotoProd()}" value="Page Gestion Produit"></h:commandButton>
+        </td>
+    </tr>
+        <tr>
+            <td colspan="2"><h:commandButton
+                    action="#{userService.gotoWelcomePage()}" value="Deconnexion"></h:commandButton>
+            </td>
+        </tr>
+    </h:form>
+
+</h:body>
+</html>
